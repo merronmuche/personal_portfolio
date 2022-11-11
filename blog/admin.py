@@ -5,7 +5,7 @@ class PostAdmin(admin.ModelAdmin):
     pass
 
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name']
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
