@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from blog.models import Post, Comment, Category
 from blog.forms import CommentForm, PostForm
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='login') #redirect when user is not logged in
 def blog_index(request):
     posts = Post.objects.all().order_by('-created_on')
     context = {
@@ -19,15 +20,17 @@ def blog_category(request, category):
         "posts": posts
     }
     return render(request, "blog_category.html", context)
-
+@login_required(login_url='login') #redirect when user is not logged in
 def blog_detail(request, pk):
     post = Post.objects.get(pk=pk)
     form = CommentForm()
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            Comment.objects.create(author=form.cleaned_data["author"],
-                body=form.cleaned_data["body"], post=post)
+            Comment.objects.create(
+                author=request.user,
+                body=form.cleaned_data["body"], 
+                post=post)
             
 
     comments = Comment.objects.filter(post=post)
