@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from projects.models import Project
+
+class ProjectAdmin(admin.ModelAdmin):
+
+    list_display = ['title', 'description','technology', 'image']
+
+admin.site.register(Project, ProjectAdmin)
