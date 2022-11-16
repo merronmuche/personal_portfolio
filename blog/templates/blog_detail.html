@@ -13,16 +13,17 @@
     </small>
     <p>{{ post.body | linebreaks }}</p>
     <h3>Leave a comment:</h3>
+   
     <form action="/blog/{{ post.pk }}/" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.author }}
-        </div>
-        <div class="form-group">
-            {{ form.body }}
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <form action="/action_page.php">
+            {% csrf_token %}
+            <div class="mb-3 mt-3">
+              <label for="comment">Comments:</label>
+            
+                <div class="form-control" rows="3" id="comment" name="text">{{form.body}}</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
     <h3>Comments:</h3>
     {% for comment in comments %}
     <p>

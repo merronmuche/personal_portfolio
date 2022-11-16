@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block page_content %}
-<div class="col-md-8 offset-md-2">
+<div class="col-md-8 offset-md-2 ">
     <h1>Blog Index</h1>
     <hr>
     {% for post in posts %}
-    <h2><a href="{% url 'blog_detail' post.pk%}">{{ post.title }}</a></h2>
+    <h2><a href="{% url 'blog_detail' post.pk%}" class="">{{ post.title }}</a></h2>
     <small>
         {{ post.created_on.date }} |&nbsp;
         Categories:&nbsp;
@@ -18,3 +18,12 @@
     {% endfor %}
 </div>
 {% endblock %}
+
+{%block search_form%}
+<form method="post" class="d-flex">
+    {%csrf_token%}
+    {{form.category}}
+    <input type="submit" class="btn btn-primary" value="Search">
+</form>
+
+{%endblock search_form%}

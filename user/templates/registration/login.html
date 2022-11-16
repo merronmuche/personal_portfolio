@@ -4,12 +4,18 @@
 
 {% block page_content %}
 <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3 mt-3">
+            <label for="username" class="form-label">Username:</label>
+            <div class="form-control">{{form.username}}</div>
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Password:</label>
+            <div class="form-control">{{form.password}}</div>
+          </div>
+        <input type="submit" class="btn btn-primary" value="Login">
+    </form>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-</form>
-
-<a href="{% url 'blog_index' %}">Back to Blogs</a>
+<a href="{% url 'register' %}">register</a>
 {% endblock %}

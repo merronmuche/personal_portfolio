@@ -10,4 +10,5 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'body', 'categories']
 
-    
+class CategorySearchForm(forms.Form):
+    category = forms.CharField(max_length=255)

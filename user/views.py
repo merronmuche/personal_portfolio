@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import login
 
-from django.contrib.auth.forms import UserCreationForm
+from user.forms import MyUserCreationForm
 
 def register(request):
 
     if request.method == 'GET':
-        form = UserCreationForm()
+        form = MyUserCreationForm()
         context = {
             'form':form
         }
@@ -15,7 +15,7 @@ def register(request):
     
     else:
 
-        form = UserCreationForm(request.POST)
+        form = MyUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)

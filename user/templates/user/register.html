@@ -6,8 +6,32 @@
 <h2>Register</h2>
 
 <form method="post">
-    {% csrf_token %}
-    {{form.as_ul}}
+    <form action="/action_page.php">
+        {%csrf_token%}
+
+        <div class="mb-3 mt-3">
+            <label for="username">First Name:</label>
+            <div class="form-control">{{form.first_name}}</div>
+          </div>
+
+          <div class="mb-3 mt-3">
+            <label for="username" class="form-label">Last Name:</label>
+            <div class="form-control">{{form.last_name}}</div>
+          </div>
+
+        <div class="mb-3 mt-3">
+          <label for="username" class="form-label">username:</label>
+          <div class="form-control">{{form.username}}</div>
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="password">password:</label>
+            <div class="form-control"> {{form.password1}}</div>
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="password_confirmation">password_confirmastion:</label>
+            <div class="form-control"> {{form.password2}} </div>
+         </div>
+
     <input type="submit" value="Register">
 </form>
 
